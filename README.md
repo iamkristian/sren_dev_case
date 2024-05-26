@@ -15,8 +15,11 @@ Build the container with
 
 ``` docker build -t orderlistservice:latest src/OrderListService ```
 
+## BriefingService
 
+Build the container with
 
+``` docker build -t briefingservice:latest src/BriefingService ```
 
 ## Outcome
 - [ ] Diagram C4 (mermaid)
