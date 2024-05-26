@@ -1,0 +1,14 @@
+**/.classpath
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.project
+**/.settings
+**/.toolstarget
+**/*.md
+**/*.sh
+**/bin
+**/obj
+**/node_modules
+**/secrets

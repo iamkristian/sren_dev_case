@@ -1,0 +1,6 @@
+@BriefingService_HostAddress = http://localhost:5054
+
+GET {{BriefingService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
