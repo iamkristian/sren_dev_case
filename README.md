@@ -6,8 +6,10 @@
 Start by installing dotnet
 
 ``` brew install dotnet ```
-``` brew install docker ```
 
+And docker if you haven't got it already.
+
+``` brew install docker ```
 
 ## OrderListService
 
