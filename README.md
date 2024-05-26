@@ -23,6 +23,14 @@ Build the container with
 
 ``` docker build -t briefingservice:latest src/BriefingService ```
 
+## Start the system
+
+Run a
+
+``` docker-compose up -d ```
+
+And you should be able to connect on << LOCALHOST:PORT >>
+
 ## Outcome
 - [ ] Diagram C4 (mermaid)
 - [x] Github project
