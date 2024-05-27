@@ -1,0 +1,25 @@
+# Use the official ASP.NET Core SDK as the base image
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+
+COPY ["OrderListService.csproj", "OrderListService/"]
+RUN dotnet restore "OrderListService/OrderListService.csproj"
+COPY . OrderListService/
+
+WORKDIR "/src/OrderListService"
+RUN dotnet build "OrderListService.csproj" -c Release -o /app/build
+
+
+# Use the SDK image for the final stage to ensure all tools are available
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS runtime
+WORKDIR /src
+
+# Copy the source files for running migrations
+COPY --from=build /src /src
+
+# Install the dotnet-ef tool in the runtime stage
+RUN dotnet tool install --global dotnet-ef
+
+# Ensure dotnet tools are in PATH
+ENV PATH="/root/.dotnet/tools:${PATH}"

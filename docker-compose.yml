@@ -13,11 +13,11 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  migrations:
+  migrations-briefing:
     build:
       context: src/BriefingService 
       dockerfile: Dockerfile.migrations
-    container_name: migrations
+    container_name: migrations-briefing
     depends_on:
       - db
     environment:
@@ -25,7 +25,19 @@ services:
       - ConnectionStrings__DefaultConnection=Host=db;Database=ContentDistributionDb;Username=myusername;Password=mypassword
     command: ["sh", "-c", "dotnet ef database update --project /src/BriefingService/BriefingService.csproj"]
 
-  webapi:
+  migrations-orderlist:
+    build:
+      context: src/OrderListService 
+      dockerfile: Dockerfile.migrations
+    container_name: migrations-orderlist
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Database=ContentDistributionDb;Username=myusername;Password=mypassword
+    command: ["sh", "-c", "dotnet ef database update --project /src/OrderListService/OrderListService.csproj"]
+
+  webapi-briefing:
     image: briefingservice:latest
     container_name: briefing_webapi
     build:
@@ -38,6 +50,20 @@ services:
       - db
     ports:
       - "5054:8080"
+
+  webapi-orderlist:
+    image: orderlistservice:latest
+    container_name: orderlist_webapi
+    build:
+      context: src/OrderListService
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Database=ContentDistributionDb;Username=myusername;Password=mypassword
+    depends_on:
+      - db
+    ports:
+      - "5219:8080"
 
 volumes:
   postgres_data:
