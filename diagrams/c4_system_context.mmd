@@ -1,0 +1,27 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '18px', 'fontFamily': 'Verdana'}}}%%
+C4Context
+    title System Context diagram for Content Distribution
+
+    Enterprise_Boundary(b0, "The Brick Company") {
+    Person(developer, Developer, "Digital platform Developer")
+
+    System(digital_platform, "Digital Platform", "Consumes digital assets.")
+
+    Enterprise_Boundary(b1, "Content Distribution") {
+
+        
+        System(briefing_service, "Briefing Service", "CRUD for Briefings")
+        System(orderlist_service, "OrderList Service", "CRUD for Order Lists")
+        SystemDb(db, "Content Distribution DB", "MetaData, Briefs, <br> and Order lists")
+    }
+    }
+
+    Rel(briefing_service, db, "Uses")
+    Rel(orderlist_service, db, "Uses")
+    Rel(digital_platform, briefing_service, "CRUD Briefs", "REST")
+    Rel(digital_platform, orderlist_service, "CRUD Order Lists", "REST")
+
+
+    UpdateElementStyle(title, $fontColor="red", $bgColor="grey", $borderColor="red")
+    UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
+

@@ -40,8 +40,8 @@ Build the container with
 
 ``` docker build -t briefingservice:latest src/BriefingService ```
 
+
 ## Outcome
 - [ ] Diagram C4 (mermaid)
 - [x] Github project
 - [x] Deck of slides presenting the solution
-
