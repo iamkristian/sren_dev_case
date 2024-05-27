@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-//using BriefingService.Models;
+using BriefingService.Models;
 
 namespace BriefingService.Data 
 {
@@ -10,7 +10,7 @@ namespace BriefingService.Data
     {
     }
 
-//    public DbSet<Product> Products { get; set; }
+    public DbSet<Briefing> Briefings { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

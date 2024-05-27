@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  postgres:
+  db:
     image: postgres:13
     container_name: postgres
     environment:
@@ -13,5 +13,32 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  migrations:
+    build:
+      context: src/BriefingService 
+      dockerfile: Dockerfile.migrations
+    container_name: migrations
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Database=ContentDistributionDb;Username=myusername;Password=mypassword
+    command: ["sh", "-c", "dotnet ef database update --project /src/BriefingService/BriefingService.csproj"]
+
+  webapi:
+    image: briefingservice:latest
+    container_name: briefing_webapi
+    build:
+      context: src/BriefingService 
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Database=ContentDistributionDb;Username=myusername;Password=mypassword
+    depends_on:
+      - db
+    ports:
+      - "5054:8080"
+
 volumes:
   postgres_data:
+
