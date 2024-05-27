@@ -40,8 +40,11 @@ Build the container with
 
 ``` docker build -t briefingservice:latest src/BriefingService ```
 
-
 ## Outcome
-- [ ] Diagram C4 (mermaid)
+- [x] Diagram C4 (mermaid)
 - [x] Github project
 - [x] Deck of slides presenting the solution
+
+## The C4 System Diagram
+
+ ![C4 System Diagram](https://raw.githubusercontent.com/iamkristian/sren_dev_case/main/diagrams/c4_system_context.svg)
