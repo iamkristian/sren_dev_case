@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-//using BriefingService.Models;
+using OrderListService.Models;
 
 namespace OrderListService.Data 
 {
@@ -10,11 +10,17 @@ namespace OrderListService.Data
     {
     }
 
-//    public DbSet<Product> Products { get; set; }
+    public DbSet<OrderList> OrderLists { get; set; }
+    public DbSet<Asset> Assets { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       base.OnModelCreating(modelBuilder);
+
+      modelBuilder.Entity<OrderList>()
+        .HasMany(o => o.Assets)
+        .WithOne(a => a.OrderList)
+        .HasForeignKey(a => a.OrderListId);
     }
   }
 }
