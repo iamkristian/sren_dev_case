@@ -11,7 +11,7 @@ namespace OrderListService.Models
     public string? OrderNumber { get; set; }
     [Required]
     public string? CustomerName { get; set; }
-    public DateTime? OrderDate { get; set; }
+    public DateTime? OrderDate { get; set; } = DateTime.Now;
     public ICollection<Asset>? Assets { get; set; }
   }
 }
