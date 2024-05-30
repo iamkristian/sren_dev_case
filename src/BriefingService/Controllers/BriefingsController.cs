@@ -30,36 +30,36 @@ namespace BriefingService.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Briefing>> GetBriefing(int id)
         {
-            var eventItem = await _context.Briefings.FindAsync(id);
+            var briefing = await _context.Briefings.FindAsync(id);
 
-            if (eventItem == null)
+            if (briefing == null)
             {
                 return NotFound();
             }
 
-            return eventItem;
+            return briefing;
         }
 
         // POST: api/Briefings
         [HttpPost]
-        public async Task<ActionResult<Briefing>> PostBriefing(Briefing eventItem)
+        public async Task<ActionResult<Briefing>> PostBriefing(Briefing briefing)
         {
-            _context.Briefings.Add(eventItem);
+            _context.Briefings.Add(briefing);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetBriefing), new { id = eventItem.Id }, eventItem);
+            return CreatedAtAction(nameof(GetBriefing), new { id = briefing.Id }, briefing);
         }
 
         // PUT: api/Briefings/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBriefing(int id, Briefing eventItem)
+        public async Task<IActionResult> PutBriefing(int id, Briefing briefing)
         {
-            if (id != eventItem.Id)
+            if (id != briefing.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(eventItem).State = EntityState.Modified;
+            _context.Entry(briefing).State = EntityState.Modified;
 
             try
             {
@@ -84,13 +84,13 @@ namespace BriefingService.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBriefing(int id)
         {
-            var eventItem = await _context.Briefings.FindAsync(id);
-            if (eventItem == null)
+            var briefing = await _context.Briefings.FindAsync(id);
+            if (briefing == null)
             {
                 return NotFound();
             }
 
-            _context.Briefings.Remove(eventItem);
+            _context.Briefings.Remove(briefing);
             await _context.SaveChangesAsync();
 
             return NoContent();
