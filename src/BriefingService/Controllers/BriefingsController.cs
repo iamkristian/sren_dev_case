@@ -44,10 +44,11 @@ namespace BriefingService.Controllers
         [HttpPost]
         public async Task<ActionResult<Briefing>> PostBriefing(Briefing briefing)
         {
+            Console.WriteLine("This is a log");
             _context.Briefings.Add(briefing);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetBriefing), new { id = briefing.Id }, briefing);
+            return CreatedAtAction("GetBriefing", new { id = briefing.Id }, briefing);
         }
 
         // PUT: api/Briefings/5

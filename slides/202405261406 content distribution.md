@@ -10,7 +10,7 @@ _I've never coded .Net or C# prior to this case._
 
 Collab: _**Be honest of my 
 shortcomings to the team. But reasure them
-I pick up new languages quick**_
+I pick up new languages quickly**_
 
  
 ---
@@ -54,7 +54,7 @@ Always test your code.
 
 Make sure it keeps working (CI).
 
-Don't be afraid of trying new things.
+Embrace new things and experiment.
 
 ---
 ## Reflections
@@ -63,7 +63,7 @@ This is my first .Net and C# web app **EVER**
 
 There were some obstacles, but great fun.
 
-I'm positively surprised of the framework.
+I'm positively surprised by the .Net framework.
 
 ---
 ## Could have's/should have's
